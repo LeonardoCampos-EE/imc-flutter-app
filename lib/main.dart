@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:imc/imc_controller.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
-// part 'imc_controller.g.dart';
 
 void main() {
   runApp(IMCApp());
@@ -55,12 +54,12 @@ class GradientAppBar extends AppBar {
       : super(
           title: const Text('IMC Calculator'),
           actions: <Widget>[
-            Observer(builder: (_) => IconButton(
-                onPressed: controller.resetStatus,
-                icon: Icon(Icons.refresh),
-                tooltip: "Refresh info",
-              )
-            )
+            Observer(
+                builder: (_) => IconButton(
+                      onPressed: controller.resetStatus,
+                      icon: Icon(Icons.refresh),
+                      tooltip: "Refresh info",
+                    ))
           ],
           flexibleSpace: Container(
             decoration: BoxDecoration(
@@ -71,10 +70,6 @@ class GradientAppBar extends AppBar {
 }
 
 class IMCBody extends Column {
-
-  // final _weightTextController = TextEditingController(text: "");
-  // final _heightTextController = TextEditingController(text: "");
-
   IMCBody()
       : super(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -83,23 +78,25 @@ class IMCBody extends Column {
               Observer(
                 builder: (_) => TextField(
                   keyboardType: TextInputType.number,
-                  onChanged: (value) => controller.weightStr = value,
+                  onChanged: (value) => controller.weightTextController.text = value,
                   decoration: InputDecoration(
                       labelText: "Weight (kg)",
                       labelStyle:
                           TextStyle(color: Color(0xff6BE585), fontSize: 20)),
                   textAlign: TextAlign.center,
+                  controller: controller.weightTextController,
                 ),
               ),
               Observer(
                 builder: (_) => TextField(
                   keyboardType: TextInputType.number,
-                  onChanged: (value) => controller.heightStr = value,
+                  onChanged: (value) => controller.heightTextController.text = value,
                   decoration: InputDecoration(
                       labelText: "Height (cm)",
                       labelStyle:
                           TextStyle(color: Color(0xff6BE585), fontSize: 20)),
                   textAlign: TextAlign.center,
+                  controller: controller.heightTextController,
                 ),
               ),
               ElevatedButton(

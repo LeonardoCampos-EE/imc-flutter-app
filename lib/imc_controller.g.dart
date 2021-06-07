@@ -9,6 +9,40 @@ part of 'imc_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$IMCController on _IMCController, Store {
+  final _$weightTextControllerAtom =
+      Atom(name: '_IMCController.weightTextController');
+
+  @override
+  TextEditingController get weightTextController {
+    _$weightTextControllerAtom.reportRead();
+    return super.weightTextController;
+  }
+
+  @override
+  set weightTextController(TextEditingController value) {
+    _$weightTextControllerAtom.reportWrite(value, super.weightTextController,
+        () {
+      super.weightTextController = value;
+    });
+  }
+
+  final _$heightTextControllerAtom =
+      Atom(name: '_IMCController.heightTextController');
+
+  @override
+  TextEditingController get heightTextController {
+    _$heightTextControllerAtom.reportRead();
+    return super.heightTextController;
+  }
+
+  @override
+  set heightTextController(TextEditingController value) {
+    _$heightTextControllerAtom.reportWrite(value, super.heightTextController,
+        () {
+      super.heightTextController = value;
+    });
+  }
+
   final _$bmiStatusAtom = Atom(name: '_IMCController.bmiStatus');
 
   @override
@@ -82,6 +116,8 @@ mixin _$IMCController on _IMCController, Store {
   @override
   String toString() {
     return '''
+weightTextController: ${weightTextController},
+heightTextController: ${heightTextController},
 bmiStatus: ${bmiStatus},
 weightStr: ${weightStr},
 heightStr: ${heightStr}

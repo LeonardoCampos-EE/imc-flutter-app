@@ -1,7 +1,16 @@
 import 'package:mobx/mobx.dart';
+import 'package:flutter/material.dart';
+
 part 'imc_controller.g.dart';
 
 abstract class _IMCController with Store {
+
+  @observable
+  TextEditingController weightTextController = TextEditingController();
+
+  @observable
+  TextEditingController heightTextController = TextEditingController();
+
   @observable
   String bmiStatus = "Inform your data!";
 
@@ -14,15 +23,18 @@ abstract class _IMCController with Store {
   @action
   resetStatus() {
     bmiStatus = "Inform your data!";
+    weightTextController.text = "";
+    heightTextController.text = "";
+
     weightStr = "";
     heightStr = "";
   }
 
   @action
   calculateIMC() {
-    double weight = double.parse(weightStr);
+    double weight = double.parse(weightTextController.text);
     print("Weight: $weight");
-    double height = double.parse(heightStr) / 100;
+    double height = double.parse(heightTextController.text) / 100;
     print("Height: $height");
     double bmiValue = weight/(height * height);
     print("BMI: $bmiValue");
